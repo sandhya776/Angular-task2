@@ -1,0 +1,27 @@
+<perfect-scrollbar>
+    <div *ngIf="deletedId === 0">
+        <h2 class="ml-3">Showing Category Results</h2>
+        <div class="row cardHeader">
+            <div *ngFor="let product of productsData" class="card col-md-12">
+                <img class="card-img-top" [src]="product.image" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.productName}}</h5>
+                    <div *ngIf="authService.user?.roleId == 2">
+                        <span (click)="updateProduct(product)">Update Product</span> |
+                        <span (click)="deleteProduct(product.id)">Delete Product</span>
+                    </div>
+                    <p class="card-text">{{product.productPrice}}</p>
+                    <p class="card-text">{{product.description}}</p>
+                </div>
+                <div class="card-footer">
+                    {{product.rating <= 1 ? product.rating+ ' star' : product.rating+ ' stars'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="deletedId !== 0">
+        <h2 style="text-align: center;">delete-product works!</h2>
+        <p class="ml-5">Product Id: {{deletedId}} has been Deleted please <span (click)="deletedId = 0">Go Back</span>
+        </p>
+    </div>
+</perfect-scrollbar>

@@ -1,0 +1,30 @@
+<div class="row" style="margin: auto; text-align: center;">
+    <div class="col-md-12">
+        <h2> Login</h2>
+    </div>
+</div>
+
+<form class="row ml-5 borderClass" style="text-align: left;width: 90%;" [formGroup]="loginForm">
+    <div class="col-md-6">
+        <div class="form-group mt-3">
+            <label for="userName">User Name</label>
+            <input type="text" class="form-control" formControlName="userName"
+                [ngClass]="{'is-invalid':loginForm.controls.userName.touched && loginForm.controls.userName.invalid}" />
+            <div class="invalid-feedback">
+                <div>User Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password"
+                [ngClass]="{'is-invalid':loginForm.controls.password.touched && loginForm.controls.password.invalid}"/>
+            <div class="invalid-feedback">
+                <div>password is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <button class="btn btn-primary loginBtn" (click)="onSubmit()"
+            [disabled]="!loginForm.valid">Submit</button>
+    </div>
+</form>

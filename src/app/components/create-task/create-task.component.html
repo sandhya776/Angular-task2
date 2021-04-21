@@ -1,0 +1,138 @@
+<div class="container-fluid header">
+  <h4>Kanban Board</h4>
+</div>
+<div class="container row" style="text-align: center;">
+  <div class="col-md-12">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task Name</mat-label>
+        <input type="text" matInput (keyup)="checkDuplicate()" [formControl]="taskName" placeholder="task name">
+        <mat-error *ngIf="taskName.hasError('duplicate')">
+          Duplicate Task Name
+        </mat-error>
+      </mat-form-field>
+      <button [disabled]="!taskName.value || error" [ngClass]="!taskName.value || error ? 'disabled': ''"
+        (click)="insertTask()" class="createTask">Create Task</button>
+    </form>
+  </div>
+</div>
+
+<div class="container row mt-3 mx-auto">
+  <div class="col-md-3">
+    <div class="box">
+      <h3 class="p-3 text-center">Backlog</h3>
+      <div class="content">
+        <perfect-scrollbar>
+          <div *ngFor="let task of tasksList">
+            <div *ngIf="task.stage == 1" class="px-3 row innEle mx-3 mb-2">
+              <div class="col-7 m-auto p-0">
+                <p class="taskName m-auto">{{task.taskName}}</p>
+              </div>
+
+              <div class="m-auto col-5 p-0">
+                <span class="material-icons next disabled">
+                  keyboard_backspace
+                </span>
+                <span class="material-icons next" (click)="task.stage = task.stage + 1">
+                  arrow_forward
+                </span>
+                <span class="material-icons del" (click)="deleteTask(task.taskName)">
+                  delete
+                </span>
+              </div>
+            </div>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box">
+      <h3 class="p-3 text-center">To Do</h3>
+      <div class="content">
+        <perfect-scrollbar>
+          <div *ngFor="let task of tasksList">
+            <div *ngIf="task.stage == 2" class="px-3 row innEle mx-3 mb-2">
+              <div class="col-7 m-auto p-0">
+                <p class="taskName ">{{task.taskName}}</p>
+
+              </div>
+              <div class="m-auto col-5 p-0">
+                <span (click)="task.stage = task.stage - 1" class="material-icons next">
+                  keyboard_backspace
+                </span>
+                <span class="material-icons next" (click)="task.stage = task.stage + 1">
+                  arrow_forward
+                </span>
+                <span class="material-icons del" (click)="deleteTask(task.taskName)">
+                  delete
+                </span>
+              </div>
+            </div>
+          </div>
+        </perfect-scrollbar>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box">
+      <h3 class="p-3 text-center">Ongoing</h3>
+      <div class="content">
+        <perfect-scrollbar>
+          <div *ngFor="let task of tasksList">
+
+            <div *ngIf="task.stage == 3" class="px-3 row innEle mx-3 mb-2">
+              <div class="col-7 m-auto p-0">
+                <p class="taskName ">{{task.taskName}}</p>
+              </div>
+              <div class="m-auto col-5 p-0">
+                <span (click)="task.stage = task.stage - 1" class="material-icons next">
+                  keyboard_backspace
+                </span>
+                <span class="material-icons next" (click)="task.stage = task.stage + 1">
+                  arrow_forward
+                </span>
+                <span class="material-icons del" (click)="deleteTask(task.taskName)">
+                  delete
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="box">
+      <h3 class="p-3 text-center">Done</h3>
+      <div class="content">
+        <perfect-scrollbar>
+          <div *ngFor="let task of tasksList" class="px-3">
+            <div class="taskName  row innEle mx-3 mb-2" *ngIf="task.stage == 4">
+              <div class="col-7 m-auto p-0">
+                <p>{{task.taskName}}</p>
+              </div>
+              <div class="m-auto col-5 p-0">
+                <span (click)="task.stage = task.stage - 1" class="material-icons next">
+                  keyboard_backspace
+                </span>
+                <span class="material-icons next disabled">
+                  arrow_forward
+                </span>
+                <span class="material-icons del" (click)="deleteTask(task.taskName)">
+                  delete
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+
+  </div>
+</div>

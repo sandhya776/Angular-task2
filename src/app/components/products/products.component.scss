@@ -1,0 +1,99 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+:host ::ng-deep .mat-tab-labels {
+  flex-direction: column;
+  width: 250px;
+}
+
+mat-tab-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-tab-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep mat-ink-bar {
+  display: none;
+}
+
+/* Styles for the active tab label */
+:host ::ng-deep.mat-tab-label.mat-tab-label-active {
+  background-color: transparent;
+  background-color: #adad9e;
+}
+/* Styles for the active tab label */
+:host ::ng-deep.mat-tab-label {
+  background-color: transparent;
+  color: #0558ef;
+  font-weight: bold;
+  border: 1px solid;
+  border-color: #adad9e;
+  height: 60px;
+  /* background-color: lightgray; */
+}
+.card-img-top {
+  height: 350px;
+}
+.cardHeader {
+  height: 400px;
+  width: 98%;
+  margin: auto;
+}
+.col-md-4 {
+  flex: 0 0 33.333333%;
+  max-width: 31.333333%;
+  margin: 5px;
+}
+.card {
+  padding: 0px;
+}
+.borderClass {
+  border: 5px solid;
+  border-color: #3f2f8e;
+}
+span {
+  font-size: 13px;
+  color: #3f2f8e;
+  cursor: pointer;
+}
+
+::ng-deep .mat-tab-links {
+  display: flex;
+  position: relative;
+  text-align: left;
+  flex-direction: column !important; //can`t change this filed by myself
+}
+
+::ng-deep .mat-tab-link {
+  background-color: transparent;
+  color: #0558ef;
+  font-weight: bold;
+  border: 1px solid;
+  border-color: #adad9e;
+  height: 60px;
+}
+::ng-deep .mat-tab-link .mat-tab-link-active {
+  background-color: transparent;
+  background-color: #adad9e;
+}
+
+// mat-tab-group {
+//   flex-grow: 1;
+//   display: flex;
+//   flex-direction: row;
+// }

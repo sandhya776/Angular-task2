@@ -1,0 +1,107 @@
+<div class="row" style="margin: auto; text-align: center;">
+    <div class="col-md-12">
+        <h2> {{this.type == 'Add' ? 'Add' : 'Update'}} Product</h2>
+    </div>
+</div>
+
+<form class="row ml-5 borderClass" style="text-align: left;width: 90%;" [formGroup]="productForm">
+    <div class="col-md-6">
+        <div class="form-group mt-3">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" formControlName="productName"
+                [ngClass]="{'is-invalid':productForm.controls.productName.touched && productForm.controls.productName.invalid}" />
+            <div class="invalid-feedback">
+                <div>Product Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" formControlName="description"
+                [ngClass]="{'is-invalid':productForm.controls.description.touched && productForm.controls.description.invalid}"></textarea>
+            <div class="invalid-feedback">
+                <div>Description is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="productColor">Product Color</label>
+            <input type="text" class="form-control" formControlName="productColor"
+                [ngClass]="{'is-invalid':productForm.controls.productColor.touched && productForm.controls.productColor.invalid}" />
+            <div class="invalid-feedback">
+                <div>Product Color is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Product Price</label>
+            <input type="text" class="form-control" formControlName="productPrice"
+                [ngClass]="{'is-invalid':productForm.controls.productPrice.touched && productForm.controls.productPrice.invalid}" />
+            <div class="invalid-feedback">
+                <div *ngIf="productForm.controls.productPrice.errors.required">Product Price is required</div>
+                <div *ngIf="productForm.controls.productPrice.errors.pattern">Product Price is invalid</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group  mt-3">
+            <label for="categoryId">Category Id</label>
+            <select class="form-control" formControlName="categoryId"
+                [ngClass]="{'is-invalid':productForm.controls.categoryId.touched && productForm.controls.categoryId.invalid}">
+                <option value=1>Tshirts</option>
+                <option value=2>Shirts</option>
+                <option value=3>Coat Pant</option>
+                <option value=4>Suit Salwar</option>
+                <option value=5>Shoes</option>
+            </select>
+            <div class="invalid-feedback">
+                <div>Category Id is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select class="form-control" formControlName="rating"
+                [ngClass]="{'is-invalid':productForm.controls.rating.touched && productForm.controls.rating.invalid}">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+                <div>Rating is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Image</label>
+            <input type="file" (change)="onChoose($event)" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="isAvailable">Is Available</label>
+            <select class="form-control" formControlName="isAvailable"
+                [ngClass]="{'is-invalid':productForm.controls.isAvailable.touched && productForm.controls.isAvailable.invalid}">
+                <option>True</option>
+                <option>False</option>
+            </select>
+            <div class="invalid-feedback">
+                <div>Is Available is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reviews">Reviews</label>
+            <select class="form-control" formControlName="reviews"
+                [ngClass]="{'is-invalid':productForm.controls.reviews.touched && productForm.controls.reviews.invalid}">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+                <div>Reviews is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <button class="btn btn-primary loginBtn" (click)="onSubmit()"
+            [disabled]="!productForm.valid">{{type}}</button>
+    </div>
+</form>
